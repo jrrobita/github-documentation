@@ -1,0 +1,39 @@
+# workflow for synching forked repo with changes in upstream 'source' repo
+
+- fork the source repo to your org (or anywhere you write permission) from the github gui
+
+- clone the fored repo to your local computer
+- copy the https / ssh location of your forked remote repo 
+
+- in a destination folder of your local computer open git bash
+- enter:
+git clone <location of your forked remote repo>
+
+- move into the folder you just created containing the cloned repo using: cd + name of new folder
+cd <name of new folder>
+
+-check that current location is correct using any of:
+pwd				# prints working directoy
+ls				# lists all files / folders in the current working dirctory 
+git stauts		# returns the status of the git repo you are currently in (or an error if you are not in a git repo)
+
+- set the original remote source repo as the upstream location for your local repo
+- go to the original remote source repo on github and copy the the https / ssh location
+- in git bash enter:
+git remote add upstream <location of the orig source repo>
+
+- to verify that the orig source was added as the upstream fro your lcoal repo enter:
+git remote -v
+
+- this will return the remote origin (for the associated remote forked repo) and upstream (for the orig source repo)
+- now you can pull (proper verbage: 'synch') changes from the orig source repo to your local copy of the forked repo
+
+- to sych changes from the orig source repo enter the following in git bash:
+ 
+ git fetch upstream			# gets conent of orig soucre repo
+ git checkout master		# puts you on master branch in your local repo if you have multiple branches
+ git merge upstream/master	# merges changes from upstream orig source repo to the master branch of your local copy of the forked repo
+ 
+ - then finally - if deisred - you can push those synched changes fro the source repo to the remote version of the forked repo on github
+ git push origin 
+ 
